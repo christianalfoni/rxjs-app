@@ -9,7 +9,6 @@ var loaders = [
     "query": {
       "presets": [
         "es2015",
-        "react",
         "stage-0"
       ],
       "plugins": []
@@ -22,11 +21,11 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'index.js',
-    library: 'Flex',
+    library: 'RxjsApp',
     libraryTarget: 'umd'
   },
   externals: {
-    'react': 'react'
+    'rxjs': 'rxjs'
   },
   module: {
     loaders: loaders
