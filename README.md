@@ -121,6 +121,27 @@ export default effect(LOAD_TODOS)
 
 So effects are not returned from a state change, they run as actions are dispatched. The returned action from an effect will also be dispatched and can be handled by other effects, be handled by a reducer or just be ignored.
 
+```js
+import { init, dispatch } from 'rxjs-app';
+import todos from './reducers/todos';
+import getTodos from './effects/getTodos';
+
+import {
+  LOAD_TODOS
+} from './constants';
+
+const stateStream = init({
+  reducers: { todos },
+  effects: { getTodos }
+});
+
+stateStream.subscribe(state => {
+  // Render your UI using the state
+});
+
+dispatch(LOAD_TODOS, { /* Optional payload */ });
+```
+
 #### Understanding the flow
 `rxjs-app` will log out flow information in the console.
 
