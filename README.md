@@ -89,7 +89,7 @@ Side effects are handled very differently in different frameworks. In Redux you 
 ```js
 import axios from 'axios';
 import { Observable } from 'rxjs';
-import { effect } from 'rxjs-app';
+import { actionEffect } from 'rxjs-app';
 import {
   LOAD_TODOS,
   LOADED_TODOS,
@@ -98,7 +98,7 @@ import {
 
 // The effect function just filters the actions stream on the
 // action types passed in
-export default effect(LOAD_TODOS)
+export default actionEffect(LOAD_TODOS)
   .map(action => {
     // We map to an ajax call
     return Observable.fromPromise(axios.get('/todos'));
@@ -141,6 +141,8 @@ stateStream.subscribe(state => {
 
 dispatch(LOAD_TODOS, { /* Optional payload */ });
 ```
+
+You do not have to return an **actionEffect**. You can put in whatever observable you want, as long as it returns an action. 
 
 #### Understanding the flow
 `rxjs-app` will log out flow information in the console.
