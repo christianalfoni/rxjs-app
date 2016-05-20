@@ -152,3 +152,7 @@ Basically you get information about:
 - What actions are triggering one or more effects
 - What actions are causing a state change, where it happens and you also get the new state
 - What actions are returned from a specific effect, causing a new loop
+
+You will also get information about effects that causes an error:
+
+![Error](error.png)
