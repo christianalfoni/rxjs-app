@@ -150,6 +150,8 @@ You do not have to return an **actionEffect**. You can put in whatever observabl
 
 ![Log](log.png)
 
+![Log2](log2.png)
+
 Basically you get information about:
 
 - What actions are triggering one or more effects

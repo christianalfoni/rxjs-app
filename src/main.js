@@ -25,7 +25,7 @@ const getTodos = actionEffect(LOAD_TODO)
 
 const otherEffect = actionEffect(LOAD_TODO_ERROR)
   .delay(2000)
-  .map(action => { console.log(action); return {type: LAST_ACTION}});
+  .map(action => ({type: LAST_ACTION}));
 
 const state = init({
   reducers: {

@@ -1,6 +1,6 @@
 {
   "name": "rxjs-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A tiny lib to build webapps using rxjs",
   "main": "dist/index.js",
   "scripts": {
