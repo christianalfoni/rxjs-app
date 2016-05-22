@@ -25,7 +25,7 @@ const getTodos = actionEffect(LOAD_TODO)
 
 const otherEffect = actionEffect(LOAD_TODO_ERROR)
   .delay(2000)
-  .map(() => ({type: LAST_ACTION}))
+  .map(action => { console.log(action); return {type: LAST_ACTION}});
 
 const state = init({
   reducers: {
@@ -36,6 +36,9 @@ const state = init({
   }
 });
 
+state.subscribe(() => {
+
+});
 
 dispatch(LOAD_TODO);
 dispatch(SOMETHING_ELSE);

@@ -84,7 +84,7 @@ dispatch(LOAD_TODOS, { /* Optional payload */ });
 ```
 
 #### Creating effects
-Side effects are handled very differently in different frameworks. In Redux you do it directly in the action creator or use other plugins like [redux-saga](https://github.com/yelouafi/redux-saga) or [redux-loop](https://github.com/raisemarketplace/redux-loop). With `rjxs-app` there is really no magic to it. You hook on to the actions stream and filter out any actions you want to produce a side effect on.
+Side effects are handled very differently in different frameworks. In Redux you do it directly in the action creator or use other plugins like [redux-saga](https://github.com/yelouafi/redux-saga) or [redux-loop](https://github.com/raisemarketplace/redux-loop). With `rjxs-app` there is really no magic to it. You hook on to the actions stream and filter out any actions you want to produce a side effect on. These side effects are run after the initial action has passed through the reducers.
 
 ```js
 import axios from 'axios';
@@ -100,8 +100,9 @@ import {
 // action types passed in
 export default actionEffect(LOAD_TODOS)
   .map(action => {
-    // We map to an ajax call
-    return Observable.fromPromise(axios.get('/todos'));
+    // We map to an ajax call. Actions passed
+    // to effects has access to the current state
+    return Observable.fromPromise(axios.get('/todos?currentUser=' + action.state.user.id));
   })
   .map(response => {
     // We return an action definition
@@ -142,7 +143,7 @@ stateStream.subscribe(state => {
 dispatch(LOAD_TODOS, { /* Optional payload */ });
 ```
 
-You do not have to return an **actionEffect**. You can put in whatever observable you want, as long as it returns an action. 
+You do not have to return an **actionEffect**. You can put in whatever observable you want, as long as it returns an action.
 
 #### Understanding the flow
 `rxjs-app` will log out flow information in the console.
