@@ -21,7 +21,7 @@ function reducerA(state = { isLoading: false }, action) {
 const getTodos = actionEffect(LOAD_TODO)
   .delay(1000)
   .map(() => { JSON.parse({}) })
-  .catch((e) => Observable.of({ type: LOAD_TODO_ERROR, message: e.message }))
+
 
 const otherEffect = actionEffect(LOAD_TODO_ERROR)
   .delay(2000)
